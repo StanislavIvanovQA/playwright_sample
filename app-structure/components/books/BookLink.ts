@@ -1,5 +1,5 @@
-import {Link} from "../../components/common-components/link/Link";
-import {BookPage} from "./BookPage";
+import {Link} from "../common-components/link/Link";
+import {BookPage} from "../../pages/books/BookPage";
 import {test} from "../../../utils/fixtures/custom-fixtures";
 
 export class BookLink extends Link {

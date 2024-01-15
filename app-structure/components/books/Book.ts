@@ -1,5 +1,5 @@
 import {BaseComponent} from "../BaseComponent";
-import {BookLink} from "../../pages/books/BookLink";
+import {BookLink} from "./BookLink";
 import {Title} from "../common-components/title/Title";
 
 export type BookContent = {
