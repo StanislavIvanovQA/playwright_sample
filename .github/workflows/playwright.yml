@@ -8,7 +8,6 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
@@ -28,9 +27,17 @@ jobs:
           name: playwright-report
           path: test-results/
 
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Deploy to GitHub Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
+          github_token: ${{ secrets.TOKEN_FOR_ACTIONS }}
           publish_dir: ./test-results
-
