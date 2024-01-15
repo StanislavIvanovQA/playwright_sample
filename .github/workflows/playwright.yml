@@ -20,7 +20,7 @@ jobs:
         run: docker build -t pw-tests-image .
 
       - name: Run Playwright tests inside Docker container
-        run: docker run --rm -v $(pwd)/allure-results:app/allure-results pw-tests-image
+        run: docker run --rm -v "${{ github.workspace }}/allure-results:/app/allure-results" pw-tests-image
 
       - uses: actions/upload-artifact@master
         with:

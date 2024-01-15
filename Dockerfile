@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci
-RUN npx npx playwright install --with-deps
+RUN npx playwright install --with-deps
 ENV CI=true
 
-CMD ["sh", "-c", "npm test && cp -r /app/allure-results /app/allure-results"]
+CMD ["npm", "test", "&&", "cp", "-r", "allure-results", "/app/allure-results"]
