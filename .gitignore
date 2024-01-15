@@ -8,3 +8,4 @@
 .idea/
 .auth/
 *.zip
+.DS_Store
