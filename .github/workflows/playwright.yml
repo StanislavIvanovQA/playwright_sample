@@ -14,7 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
@@ -59,6 +58,6 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.TOKEN_FOR_ACTIONS }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
