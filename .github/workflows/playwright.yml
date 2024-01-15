@@ -34,7 +34,3 @@ jobs:
         with:
           publish_dir: ./test-results
 
-      - name: Get GitHub Pages URL
-        run:
-          echo "GitHub Pages URL: ${{ steps.gh-pages-url.outputs.pages_url }}"
-
