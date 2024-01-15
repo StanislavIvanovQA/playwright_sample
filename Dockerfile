@@ -7,4 +7,5 @@ COPY . .
 RUN npm ci
 RUN npx npx playwright install --with-deps
 
-CMD ["npx", "playwright", "test", "--output=results"]
+CMD ["npm", "test"]
+CMD ["sh", "-c", "npm test && cp -r /app/allure-results /app/host-test-results"]

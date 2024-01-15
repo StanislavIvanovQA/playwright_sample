@@ -18,7 +18,7 @@ export class BookLink extends Link {
 
     // private
 
-    private async getBookId(){
+    private async getBookId() {
         return test.step(`Retrieving book id`, async () => {
             const bookLink = await this.locator.getAttribute('href')
             const bookIdString = bookLink?.split('=')[1]

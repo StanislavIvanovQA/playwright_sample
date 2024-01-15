@@ -20,9 +20,9 @@ export default defineConfig({
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         baseURL: 'https://demoqa.com/',
-        screenshot: 'on',
-        video: 'on',
-        // trace: 'on',
+        screenshot: 'only-on-failure',
+        video: 'on-first-retry',
+        trace: 'on-first-retry',
     },
 
     /* Configure projects for major browsers */
