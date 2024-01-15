@@ -1,0 +1,10 @@
+/node_modules/
+/test-results/
+/playwright-report/
+/allure-report/
+/allure-results/
+/blob-report/
+/playwright/.cache/
+.idea/
+.auth/
+*.zip
