@@ -17,6 +17,6 @@ export class BooksPage extends BasePage {
     })
 
     constructor(page: Page) {
-        super({name: 'BooksPage Page', url: 'books', page});
+        super({name: 'Books Page', url: 'books', page});
     }
 }
