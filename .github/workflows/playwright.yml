@@ -19,4 +19,22 @@ jobs:
         run: docker build -t my-playwright-image .
 
       - name: Run Playwright tests inside Docker container
-        run: docker run --rm my-playwright-image
+        run: docker run --rm -v $(pwd)/test-results:/app/test-results my-playwright-image
+
+      - name: Archive Playwright Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: test-results/
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./test-results
+
+      - name: Get GitHub Pages URL
+        run:
+          echo "GitHub Pages URL: ${{ steps.gh-pages-url.outputs.pages_url }}"
+
