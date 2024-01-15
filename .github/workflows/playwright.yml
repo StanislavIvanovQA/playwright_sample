@@ -20,13 +20,6 @@ jobs:
       - name: Run Playwright tests inside Docker container
         run: docker run --rm -v $(pwd)/test-results:/app/test-results my-playwright-image
 
-      - name: Archive Playwright Report
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: test-results/
-
       - uses: actions/upload-artifact@master
         with:
           name: allure-results
