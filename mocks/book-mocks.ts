@@ -1,4 +1,4 @@
-export const GET_BOOKS = 'https://demoqa.com/BookStore/v1/Books'
+export const GET_BOOKS = 'BookStore/v1/Books'
 
 export type BookListMockProps = {
     books: BookMock[]
@@ -19,7 +19,7 @@ export type BookMock = {
 export const ONE_BOOK_MOCK: BookListMockProps = {
     books: [{
         isbn: '9781449325862',
-        title: 'The Darkness That Come Before',
+        title: 'The Darkness That Comes Before',
         subTitle: 'The Prince of Nothing, Book One',
         publish_date: "2008-09-02T08:48:39.000Z",
         author: 'Scott Bakker',

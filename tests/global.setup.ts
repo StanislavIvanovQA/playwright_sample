@@ -1,6 +1,9 @@
 import {expect, test as setup} from '@playwright/test';
 import {STORAGE_STATE} from "../playwright.config";
 
+// Example of how login can be performed before all tests
+// (Should be in separate project and then included in dependencies to another projects)
+
 setup.skip('Setup', async ({page}) => {
     const login = 'Playwright Demo'
     const password = 'ThePassword@123'

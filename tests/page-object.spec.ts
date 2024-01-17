@@ -1,6 +1,5 @@
 import {test} from '../utils/fixtures/custom-fixtures';
 import {BookContent} from "../app-structure/components/books/Book";
-import {BookListItem} from "../app-structure/components/books/BooksList";
 import {GET_BOOKS, ONE_BOOK_MOCK} from "../mocks/book-mocks";
 
 const expectedBookNames = [
@@ -25,18 +24,20 @@ const expectedBook: BookContent = {
     Website: 'http://chimera.labs.oreilly.com/books/1230000000561/index.html'
 }
 
-test.describe('Bookstore POM', () => {
+test.describe('Example tests with Page Object Model and custom fixtures', () => {
     test('BooksPage test', async ({app}) => {
         const userName = process.env.LOGIN as string
 
         await app.loginPage.visit()
         await app.loginPage.loginForm.loginWithDefaultCredentials()
+
         await app.booksPage.userNameTitle.shouldBeVisible()
         await app.booksPage.userNameTitle.shouldHaveText(userName)
     })
 
     test('Have correct title', async ({app}) => {
         await app.booksPage.visit()
+
         await app.booksPage.headerTitle.shouldBeVisible()
         await app.booksPage.headerTitle.shouldHaveText('Book Store')
     })
@@ -45,12 +46,14 @@ test.describe('Bookstore POM', () => {
         const expectedBooksCount = expectedBookNames.length
 
         await app.booksPage.visit()
+
         await app.booksPage.books.shouldHaveCount(expectedBooksCount)
     })
 
     for (const bookTitle of expectedBookNames) {
         test(`Checking that book with name ${bookTitle} is present on page`, async ({app}) => {
             await app.booksPage.visit()
+
             await app.booksPage.books.bookWithTitle(bookTitle).shouldBeVisible()
         })
     }
@@ -66,19 +69,15 @@ test.describe('Bookstore POM', () => {
     })
 
     test('Mock book list test', async ({app, mock}) => {
-        const expectedBookListItem: BookListItem = {
-            title: 'The Darkness That Come Before',
-            author: 'Scott Bakker',
-            publisher: 'Orbit'
-        }
         await mock.route(GET_BOOKS, ONE_BOOK_MOCK)
 
         await app.booksPage.visit()
         await app.booksPage.books.shouldHaveCount(1)
         const testedBook = await app.booksPage.books.bookByNumber(1)
-        await testedBook.title.shouldBe(expectedBookListItem.title)
-        await testedBook.author.shouldBe(expectedBookListItem.author)
-        await testedBook.publisher.shouldBe(expectedBookListItem.publisher)
+
+        await testedBook.title.shouldBe('The Darkness That Comes Before')
+        await testedBook.author.shouldBe('Scott Bakker')
+        await testedBook.publisher.shouldBe('Orbit')
     })
 
 

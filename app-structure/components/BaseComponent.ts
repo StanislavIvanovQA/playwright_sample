@@ -1,5 +1,6 @@
 import {expect, Locator} from "@playwright/test";
 import {test} from "../../utils/fixtures/custom-fixtures";
+import {splitStringByCapitalLetters} from "../../utils/utils";
 
 export type ComponentProps = {
     name?: string
@@ -18,13 +19,18 @@ export abstract class BaseComponent {
     // actions
 
     public async click(...[args]: Parameters<typeof this.locator.click>) {
-        await this.locator.click(args)
+        await test.step(`Clicking on ${this.name} with ${args?.button ?? 'left'} mouse button`,
+            async () => {
+                await this.locator.click(args)
+            })
     }
 
     // assertions
 
     public async shouldBeVisible() {
-        await expect(this.locator).toBeVisible()
+        await test.step(`Checking that ${this.name} is visible`, async () => {
+            await expect(this.locator).toBeVisible()
+        })
     }
 
     public async shouldHaveText(expectedText: number): Promise<void>;
@@ -34,17 +40,14 @@ export abstract class BaseComponent {
             async () => {
                 let expectedText
                 switch (typeof expectedTextOrNumber) {
-                    case 'number': {
+                    case 'number':
                         expectedText = expectedTextOrNumber.toString()
                         break
-                    }
-                    case "string": {
+                    case "string":
                         expectedText = expectedTextOrNumber
                         break
-                    }
-                    default: {
+                    default:
                         throw new Error(`Invalid arg: ${expectedTextOrNumber}`)
-                    }
                 }
 
                 await expect(this.locator).toHaveText(expectedText)
@@ -54,6 +57,6 @@ export abstract class BaseComponent {
     // private
 
     private convertComponentNameToString() {
-        return this.constructor.name.split(/(?=[A-Z])/).join(' ')
+        return splitStringByCapitalLetters(this.constructor.name)
     }
 }

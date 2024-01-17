@@ -36,12 +36,18 @@ export type Planet = {
     url: string
 }
 
+// Very simple and raw example of api tests with Playwright:
+// just doing a request and validating some random fields
 
 test.describe('Simple example API tests on PW', () => {
+    // Redefining base URL
     test.use({baseURL: 'https://swapi.dev/api/'})
 
     test('Luke Skywalker Test', async ({request}) => {
         const response = await request.get('people/1/')
+
+        // type should be checked in proper way, for example with Zod
+        // https://zod.dev/
         const person = (await response.json()) as unknown as Person
 
         expect(person.name).toEqual("Luke Skywalker")
@@ -50,9 +56,9 @@ test.describe('Simple example API tests on PW', () => {
 
     test('Tatooine test', async ({request}) => {
         const response = await request.get('planets/1/')
-        const person = (await response.json()) as unknown as Planet
+        const planet = (await response.json()) as unknown as Planet
 
-        expect(person.name).toEqual("Tatooine")
-        expect(person.population).toEqual("200000")
+        expect(planet.name).toEqual("Tatooine")
+        expect(planet.population).toEqual("200000")
     })
 })

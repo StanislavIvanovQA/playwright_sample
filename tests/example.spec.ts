@@ -1,13 +1,12 @@
 import {test, expect} from '@playwright/test';
 
-test.describe.skip('Bookstore', () => {
+test.describe.skip('Example of tests without Page Object', () => {
     test('Have correct title', async ({page}) => {
         await page.goto('books', {
             waitUntil: 'domcontentloaded'
         })
 
-        const headerElement = page
-            .locator('.main-header')
+        const headerElement = page.locator('.main-header')
 
         await expect(headerElement).toHaveText('BookPage Store')
     })

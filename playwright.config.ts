@@ -19,7 +19,7 @@ export default defineConfig({
     reporter: [['html', {open: 'never'}], ["allure-playwright"], ["line"]],
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
-        baseURL: 'https://demoqa.com/',
+        baseURL: process.env.BASE_URL,
         screenshot: 'only-on-failure',
         video: 'on-first-retry',
         trace: 'on-first-retry',

@@ -3,18 +3,15 @@ import {expect} from "@playwright/test";
 import {Book} from "./Book";
 import {test} from "../../../utils/fixtures/custom-fixtures";
 
-export type BookListItem = {
-    title: string
-    author: string
-    publisher: string
-}
-
 export class BooksList extends BaseComponent {
-    public async shouldHaveCount(expectedCountOfBooks: number) {
-        await expect(this.locator).toHaveCount(expectedCountOfBooks)
+    public async shouldHaveCount(expectedCountOfBooks: number): Promise<void> {
+        await test.step(`Checking that book list have count of books equal ${expectedCountOfBooks}`,
+            async () => {
+                await expect(this.locator).toHaveCount(expectedCountOfBooks)
+            })
     }
 
-    public async bookByNumber(bookNumber: number) {
+    public async bookByNumber(bookNumber: number): Promise<Book> {
         return test.step(`Searching the book in list by number ${bookNumber}`, () => {
             return new Book({
                 locator: this
@@ -26,7 +23,7 @@ export class BooksList extends BaseComponent {
         })
     }
 
-    public bookWithTitle(bookTitle: string) {
+    public bookWithTitle(bookTitle: string): Book {
         return new Book({
             locator: this
                 .locator

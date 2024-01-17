@@ -9,6 +9,11 @@ export class App {
     public loginPage = new LoginPage(this.page)
     public booksPage = new BooksPage(this.page)
 
+    /**
+     * @deprecated
+     * for debug purpose only
+     * don't forget to delete all executions before commit
+     */
     public async pause() {
         await this.page.pause()
     }

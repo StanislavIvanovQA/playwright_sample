@@ -6,6 +6,8 @@ export class Mock {
 
     public async route(url: string, body: any) {
         await this.page.route(url, async (route, request) => {
+            // Can be filtered, for example by method like below:
+            //
             // if (request.method() === 'POST') {
             //     await route.continue()
             //     return
