@@ -58,7 +58,7 @@ test.describe('Example tests with Page Object Model and custom fixtures', () => 
         })
     }
 
-    test('Book Content Test', async ({app}) => {
+    test('Book Content Test (Working with more than one tab)', async ({app}) => {
         await app.booksPage.visit()
         const bookToTest = await app.booksPage.books.bookByNumber(1)
         const bookPage = await bookToTest.link.openInNewTab()
